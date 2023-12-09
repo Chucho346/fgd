@@ -1,13 +1,3 @@
-/*****************************************************************************************************************
-	UNIVERSIDAD NACIONAL AUTONOMA DE MEXICO
-	FACULTAD DE ESTUDIOS SUPERIORES -ARAGON-
-
-	Computadoras y programacion.
-	(c) 
-	Quiso decir: Programa principal de la aplicacion de la distancia de Levenstein.
-
-******************************************************************************************************************/
-
 
 #include "stdafx.h"
 #include <string.h>
@@ -17,45 +7,25 @@
 #define LONGITUD 32
 char abecedario[LONGITUD + 6] = "abcdefghijklmnñopqrstuvwxyzáéíóú";
 
-//Funciones publicas del proyecto
-/*****************************************************************************************************************
-	DICCIONARIO: Esta funcion crea el diccionario completo
-	char *	szNombre				:	Nombre del archivo de donde se sacaran las palabras del diccionario
-	char	szPalabras[][TAMTOKEN]	:	Arreglo con las palabras completas del diccionario
-	int		iEstadisticas[]			:	Arreglo con el numero de veces que aparecen las palabras en el diccionario
-	int &	iNumElementos			:	Numero de elementos en el diccionario
-******************************************************************************************************************/
+
 void Diccionario(char* szNombre, char szPalabras[][TAMTOKEN], int iEstadisticas[], int& iNumElementos)
 {
-	
-
 	/* Variable de archivo*/
 	FILE* fp;
 	iNumElementos = 0;
-
 	/*Variable = i*/
 	int i;
-	
-
 	/*Variables ocuparemos para guardar los datos */
 	char lectura, array[TAMTOKEN];
-
-	
 	//Para iniciar el arreglo de estadisticas.
 	for (i = 0; i < NUMPALABRAS; i++)
 		iEstadisticas[i] = 0;
-
 	/*Se abre el archivo en modo lectura*/
 	fopen_s(&fp, szNombre, "r");
-
 	/*Variable */
 	int contador = 0;
-
 	/*Almacenar palabras de puntuacion */
 	char puntuacion[] = " \t\n\r.,;() ";
-
-	
-
 	/*Comprobamos apertura de archivo*/
 	if (fp == NULL)
 		return;
@@ -85,7 +55,6 @@ void Diccionario(char* szNombre, char szPalabras[][TAMTOKEN], int iEstadisticas[
 		/*si es contador igual a cero sigue */
 		else if (contador == 0)
 			continue;
-
 		/*si es contador igual a 1, asignar 0 a contador sigue */
 		else if (contador == 1 && bandera) {
 			contador = 0;
@@ -93,7 +62,6 @@ void Diccionario(char* szNombre, char szPalabras[][TAMTOKEN], int iEstadisticas[
 		}
 		/*Cuando las encuentre marcar un espacio*/
 		array[contador] = '\0';
-
 		/*Despues de comprobar en el abecedario y la puntuacion */
 		for (i = 0; i < iNumElementos && !bandera; i++) {
 
@@ -114,9 +82,6 @@ void Diccionario(char* szNombre, char szPalabras[][TAMTOKEN], int iEstadisticas[
 		contador = 0;
 	}/*Fin del while o el documento*/
 	fclose(fp);
-
-	 
-
 	/*Método burbuja para el ordenamiento*/
 	for (int j = 0; j < iNumElementos - 1; j++) {
 
@@ -134,20 +99,14 @@ void Diccionario(char* szNombre, char szPalabras[][TAMTOKEN], int iEstadisticas[
 	}
 }
 
-/*****************************************************************************************************************
+
 	ClonaPalabras: toma una palabra y obtiene todas las combinaciones y permutaciones requeridas por el metodo
-	char *	szPalabraLeida,						//Palabra a clonar   palabra
-	char	szPalabrasSugeridas[][TAMTOKEN], 	//Lista de palabras clonadas
-	int &	iNumSugeridas)						//Numero de elementos en la lista
-******************************************************************************************************************/
+	char *	sz
 void	ClonaPalabras(
 	char* szPalabraLeida,						// Palabra a clonar
 	char  szPalabrasSugeridas[][TAMTOKEN], 	    //Lista de palabras clonadas
 	int& iNumSugeridas)						    //Numero de elementos en la lista
 {
-
-
-
 	/*Variables para la clonacion*/
 	char auxiliar[TAMTOKEN];
 	iNumSugeridas = 0;
@@ -253,7 +212,6 @@ void	ListaCandidatas(
 	int		iPeso[],							//Peso de las palabras en la lista final
 	int& iNumLista)							    //Numero de elementos en la szListaFinal
 {
-	
 	iNumLista = 0;
 	for (int i = 0; i < iNumSugeridas; i++) {
 		for (int j = 0; j < iNumElementos; j++) {
