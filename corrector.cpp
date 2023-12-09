@@ -83,20 +83,7 @@ void Diccionario(char* szNombre, char szPalabras[][TAMTOKEN], int iEstadisticas[
 	}/*Fin del while o el documento*/
 	fclose(fp);
 	/*Método burbuja para el ordenamiento*/
-	for (int j = 0; j < iNumElementos - 1; j++) {
-
-		for (i = j + 1; i < iNumElementos; i++) {
-
-			if (strcmp(szPalabras[j], szPalabras[i]) > 0) {
-				strcpy_s(array, szPalabras[j]);
-				strcpy_s(szPalabras[j], szPalabras[i]);
-				strcpy_s(szPalabras[i], array);
-				contador = iEstadisticas[j];
-				iEstadisticas[j] = iEstadisticas[i];
-				iEstadisticas[i] = contador;
-			}
-		}
-	}
+	
 }
 
 
