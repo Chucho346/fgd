@@ -83,7 +83,20 @@ void Diccionario(char* szNombre, char szPalabras[][TAMTOKEN], int iEstadisticas[
 	}/*Fin del while o el documento*/
 	fclose(fp);
 	/*Método burbuja para el ordenamiento*/
-	
+	for (int j = 0; j < iNumElementos - 1; j++) {
+
+		for (i = j + 1; i < iNumElementos; i++) {
+
+			if (strcmp(szPalabras[j], szPalabras[i]) > 0) {
+				strcpy_s(array, szPalabras[j]);
+				strcpy_s(szPalabras[j], szPalabras[i]);
+				strcpy_s(szPalabras[i], array);
+				contador = iEstadisticas[j];
+				iEstadisticas[j] = iEstadisticas[i];
+				iEstadisticas[i] = contador;
+			}
+		}
+	}
 }
 
 
@@ -221,18 +234,7 @@ void	ListaCandidatas(
 	}
 	/*Comprobar con Numero de elementos en la szListaFinal*/
 	//Numero de elementos en la lista de opciones.
-	for (int i = 0; i < iNumLista; i++) {
-		for (int j = 0; j < iNumLista - 1; j++) {
-			/*Asignar la condicion*/
-			if (iPeso[j] < iPeso[j + 1]) {
-				/*Variables para el metodo de las candidatas*/
-				int iaux; char caux[50];
-				strcpy_s(caux, szListaFinal[j + 1]); iaux = iPeso[j + 1];
-				strcpy_s(szListaFinal[j + 1], szListaFinal[j]); iPeso[j + 1] = iPeso[j];
-				strcpy_s(szListaFinal[j], caux); iPeso[j] = iaux;
-			}
-		}
-	}
+	
 }
 
 
